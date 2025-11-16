@@ -1,0 +1,25 @@
+{
+  "type": "FRAME_SEQUENCE",
+  "metadata": {
+    "title": "AI Generated Video",
+    "description": "A close up of two people staring at a cryptic drawing on a wall, torchlight flickering.\nA man murmurs, 'This must be it. That's the secret code.' The woman looks at him and whispering excitedly, 'What did you find?'",
+    "duration": 6,
+    "fps": 10,
+    "width": 1920,
+    "height": 1080,
+    "created": "2025-11-09T12:13:19.487Z"
+  },
+  "totalFrames": 60,
+  "frameRate": 10,
+  "instructions": [
+    "1. Each frame is a base64-encoded PNG image",
+    "2. Display frames at the specified frame rate (FPS)",
+    "3. Use the video_player.html for best playback experience",
+    "4. Individual frame PNGs are available in the frames/ directory"
+  ],
+  "playbackInstructions": {
+    "web": "Open video_player.html in a web browser",
+    "manual": "Extract frames and use video editing software",
+    "programming": "Use the JSON data to create your own player"
+  }
+}

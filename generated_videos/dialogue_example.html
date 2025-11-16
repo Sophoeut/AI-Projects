@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Generated Video - 11/9/2025</title>
+    <style>
+        body {
+            background: #000;
+            color: white;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        .video-container {
+            border: 2px solid #ff6b35;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px;
+            background: #1a1a1a;
+        }
+        canvas {
+            border: 1px solid #333;
+            background: #000;
+        }
+        .controls {
+            margin: 10px;
+            display: flex;
+            gap: 10px;
+        }
+        button {
+            background: #ff6b35;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #e55a2e;
+        }
+        .info {
+            max-width: 800px;
+            text-align: center;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🎬 AI Generated Video</h1>
+    <div class="info">
+        <p><strong>Prompt:</strong> A close up of two people staring at a cryptic drawing on a wall, torchlight flickering.
+A man murmurs, 'This must be it. That's the secret code.' The woman looks at him and whispering excitedly, 'What did you find?'</p>
+        <p><strong>Generated:</strong> 11/9/2025, 6:47:46 PM</p>
+        <p><strong>Specs:</strong> 800x600, 10fps, Animated Canvas</p>
+    </div>
+    
+    <div class="video-container">
+        <canvas id="videoCanvas" width="800" height="600"></canvas>
+        <div class="controls">
+            <button onclick="playAnimation()">▶️ Play</button>
+            <button onclick="pauseAnimation()">⏸️ Pause</button>
+            <button onclick="resetAnimation()">🔄 Reset</button>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('videoCanvas');
+        const ctx = canvas.getContext('2d');
+        let animationFrame = 0;
+        let animationId;
+        let isPlaying = false;
+
+        function drawFrame(frame) {
+            // Clear canvas
+            ctx.fillStyle = '#000';
+            ctx.fillRect(0, 0, 800, 600);
+            
+            // Draw animated torch light
+            const gradient = ctx.createRadialGradient(400, 300, 0, 400, 300, 100 + frame * 3);
+            gradient.addColorStop(0, 'rgba(255, 165, 0, 0.8)');
+            gradient.addColorStop(1, 'rgba(255, 165, 0, 0.1)');
+            ctx.fillStyle = gradient;
+            ctx.beginPath();
+            ctx.arc(400, 300, 100 + frame * 3, 0, 2 * Math.PI);
+            ctx.fill();
+            
+            // Draw characters (simple rectangles)
+            ctx.fillStyle = '#8B4513';
+            ctx.fillRect(150 + Math.sin(frame * 0.1) * 5, 200, 60, 120); // Person 1
+            ctx.fillRect(550 + Math.sin(frame * 0.15) * 3, 190, 50, 130); // Person 2
+            
+            // Draw wall with cryptic symbols
+            ctx.strokeStyle = '#654321';
+            ctx.lineWidth = 3;
+            ctx.strokeRect(50, 50, 700, 300);
+            
+            // Cryptic drawing (animated)
+            ctx.strokeStyle = '#DAA520';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            for (let i = 0; i < frame; i++) {
+                const x = 100 + (i * 10) % 600;
+                const y = 150 + Math.sin(i * 0.2) * 50;
+                if (i === 0) ctx.moveTo(x, y);
+                else ctx.lineTo(x, y);
+            }
+            ctx.stroke();
+            
+            // Add text
+            ctx.fillStyle = '#fff';
+            ctx.font = '16px Arial';
+            ctx.fillText('Frame: ' + (frame + 1) + '/60', 10, 30);
+            if (frame > 20) {
+                ctx.fillText('"This must be it. That's the secret code."', 50, 400);
+            }
+            if (frame > 40) {
+                ctx.fillText('"What did you find?"', 450, 420);
+            }
+        }
+
+        function playAnimation() {
+            if (isPlaying) return;
+            isPlaying = true;
+            
+            function animate() {
+                drawFrame(animationFrame);
+                animationFrame = (animationFrame + 1) % 60;
+                animationId = requestAnimationFrame(animate);
+            }
+            animate();
+        }
+
+        function pauseAnimation() {
+            isPlaying = false;
+            if (animationId) {
+                cancelAnimationFrame(animationId);
+            }
+        }
+
+        function resetAnimation() {
+            pauseAnimation();
+            animationFrame = 0;
+            drawFrame(0);
+        }
+
+        // Initialize
+        drawFrame(0);
+    </script>
+</body>
+</html>
