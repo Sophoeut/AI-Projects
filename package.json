@@ -5,7 +5,7 @@
   "main": "AIvideos.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "echo \"Build script added for Vercel\"",
+    "vercel-build": "echo \"Vercel build step\"",
     "start": "node server.js"
   },
   "keywords": [],
